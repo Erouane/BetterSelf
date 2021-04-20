@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
+import { getRandomInteger } from "../../../utils/randomInteger";
 import { Colors, getRandomCardColor } from "../../Theme/colors";
 
 interface ProjectCardProps {
@@ -9,21 +10,44 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = (props: ProjectCardProps) => {
-  const [style, set] = useSpring(() => ({ transform: "scale(1)" }));
+  const randomDelay = getRandomInteger(0, 500);
+  console.log(randomDelay);
+  const [hoverStyle, hoverApi] = useSpring(() => ({
+    from: {
+      transform: "scale(1)",
+      opacity: 1,
+    },
+  }));
+  const [flipStyle, flipApi] = useSpring(() => ({
+    from: {
+      transform: "rotateY(90deg)",
+    },
+    delay: randomDelay,
+    config: { tension: 20, mass: 20 },
+  }));
   const randomColor = getRandomCardColor();
   const tasks = props.tasks;
+  useEffect(() => {
+    flipApi.start({
+      transform: "rotateY(-360deg)",
+      delay: randomDelay,
+      config: { tension: 100, mass: 1 },
+    });
+  });
   return (
-    <Container
-      onPointerEnter={() => set({ transform: "scale(1.1)" })}
-      onPointerLeave={() => set({ transform: "scale(1)" })}
-      onPointerUp={() => set({ transform: "scale(1.1)" })}
-      onPointerDown={() => set({ transform: "scale(1)" })}
-      style={style}
-      color={randomColor}
-    >
-      <Title color={Colors.primaryText}>{props.title}</Title>
-      {tasks ? <Tasks tasks={tasks} /> : null}
-    </Container>
+    <FlipContainer style={flipStyle}>
+      <Container
+        onPointerEnter={() => hoverApi.start({ transform: "scale(1.1)" })}
+        onPointerLeave={() => hoverApi.start({ transform: "scale(1)" })}
+        onPointerUp={() => hoverApi.start({ opacity: 1 })}
+        onPointerDown={() => hoverApi.start({ opacity: 0.5 })}
+        style={hoverStyle}
+        color={randomColor}
+      >
+        <Title color={Colors.primaryText}>{props.title}</Title>
+        {tasks ? <Tasks tasks={tasks} /> : null}
+      </Container>
+    </FlipContainer>
   );
 };
 
@@ -53,6 +77,8 @@ const Container = styled(animated.div)<{ color: string }>`
   border-radius: 20px;
   background-color: ${(props) => props.color};
 `;
+
+const FlipContainer = styled(animated.div)``;
 
 const Title = styled.h1<{ color: string }>`
   color: ${(props) => props.color};
