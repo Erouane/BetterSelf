@@ -1,5 +1,5 @@
 import React from "react";
-import { animated } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
 import { Colors, getRandomCardColor } from "../../Theme/colors";
 
@@ -9,11 +9,18 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = (props: ProjectCardProps) => {
+  const [style, set] = useSpring(() => ({ transform: "scale(1)" }));
   const randomColor = getRandomCardColor();
-  console.log(randomColor);
   const tasks = props.tasks;
   return (
-    <Container color={randomColor}>
+    <Container
+      onPointerEnter={() => set({ transform: "scale(1.1)" })}
+      onPointerLeave={() => set({ transform: "scale(1)" })}
+      onPointerUp={() => set({ transform: "scale(1.1)" })}
+      onPointerDown={() => set({ transform: "scale(1)" })}
+      style={style}
+      color={randomColor}
+    >
       <Title color={Colors.primaryText}>{props.title}</Title>
       {tasks ? <Tasks tasks={tasks} /> : null}
     </Container>
