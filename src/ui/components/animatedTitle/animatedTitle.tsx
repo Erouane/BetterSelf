@@ -34,5 +34,4 @@ export const AnimatedTitle = (props: AnimatedTitleProps) => {
 const Container = styled(animated.div)`
 	display: flex;
 	flex-direction: row;
-	padding: 50px;
 `;

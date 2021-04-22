@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
 import { getRandomInteger } from "../../../utils/randomInteger";
-import { Colors, getPastelColor } from "../../Theme/colors";
+import { Colors, getRandomPastelColor } from "../../Theme/colors";
 
 interface ProjectCardProps {
 	title: string;
@@ -16,6 +16,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
 			transform: "scale(1)",
 			opacity: 1,
 		},
+		config: { tension: 400 },
 	}));
 	const [flipStyle, flipApi] = useSpring(() => ({
 		from: {
@@ -24,7 +25,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
 		delay: randomDelay,
 		config: { tension: 20, mass: 20 },
 	}));
-	const randomColor = getPastelColor();
+	const randomColor = getRandomPastelColor();
 	const tasks = props.tasks;
 	useEffect(() => {
 		flipApi.start({
@@ -69,6 +70,7 @@ const Container = styled(animated.div)<{ color: string }>`
 	padding: 50px;
 	border-radius: 20px;
 	background-color: ${(props) => props.color};
+	cursor: pointer;
 `;
 
 const FlipContainer = styled(animated.div)``;

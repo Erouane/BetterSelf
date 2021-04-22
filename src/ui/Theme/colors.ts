@@ -13,7 +13,7 @@ export const pastelColors = [
 	"#EB96AA",
 ];
 
-export const getPastelColor = () => {
+export const getRandomPastelColor = () => {
 	const length = pastelColors.length;
 	const randomInt = getRandomInteger(0, length - 1);
 	return pastelColors[randomInt];
@@ -27,7 +27,7 @@ export const brightColors = [
 	"#3BD5C9",
 ];
 
-export const getBrightColor = () => {
+export const getRandomBrightColor = () => {
 	const length = brightColors.length;
 	const randomInt = getRandomInteger(0, length - 1);
 	return brightColors[randomInt];

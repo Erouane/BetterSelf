@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { AnimatedTitle } from "../components/animatedTitle/animatedTitle";
+import { HeaderButton } from "../components/headerButton/headerButton";
 import { ProjectCard } from "../components/project/projectCard";
 import { Screen } from "./Screen";
 
@@ -9,7 +10,10 @@ export const LandingScreen = () => {
 		<Screen>
 			<MainContainer>
 				<HeaderContainer>
-					<AnimatedTitle title="Have a nice day !"></AnimatedTitle>
+					<AnimatedTitle title="You can do it !"></AnimatedTitle>
+					<Spacer />
+					<HeaderButton text="Sign in"></HeaderButton>
+					<HeaderButton text="Log in"></HeaderButton>
 				</HeaderContainer>
 				<ProjectsContainer>
 					<ProjectCard title="Project" tasks={["task1", "task2", "task3"]} />
@@ -36,12 +40,18 @@ const MainContainer = styled.div`
 `;
 
 const HeaderContainer = styled.div`
-  display: flex
-  flex-direction: column;
+	display: flex;
+	flex-direction: row;
+	flex-grow: 0;
+	padding: 50px;
 `;
 
 const ProjectsContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+`;
+
+const Spacer = styled.div`
+	flex-grow: 1;
 `;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
 import { getRandomInteger } from "../../../utils/randomInteger";
-import { getBrightColor } from "../../Theme/colors";
+import { getRandomBrightColor } from "../../Theme/colors";
 
 interface AnimatedLetterProps {
 	letter: string;
@@ -11,7 +11,7 @@ interface AnimatedLetterProps {
 export const AnimatedLetter = (props: AnimatedLetterProps) => {
 	const getRandomAngle = () => getRandomInteger(-10, 10);
 	const getRandomVector = () => Math.random();
-	const randomColor = getBrightColor();
+	const randomColor = getRandomBrightColor();
 	console.log(randomColor);
 	const [wriggleStyle, wriggleApi] = useSpring(() => ({
 		loop: true,
@@ -28,7 +28,9 @@ export const AnimatedLetter = (props: AnimatedLetterProps) => {
 		],
 	}));
 	useEffect(() => {
-		wriggleApi.start({ config: { tension: 350, mass: 10, clamp: true } });
+		wriggleApi.start({
+			config: { tension: getRandomInteger(200, 400), mass: 10, clamp: true },
+		});
 	});
 	return (
 		<Letter style={wriggleStyle} color={randomColor}>
@@ -38,8 +40,9 @@ export const AnimatedLetter = (props: AnimatedLetterProps) => {
 };
 
 const Letter = styled(animated.p)<{ color: string }>`
+	padding: 0px 10px;
 	color: ${(props) => props.color};
 	font-family: UbuntuMono;
 	font-size: 3em;
-	width: 30px;
+	flex-shrink: 1;
 `;
