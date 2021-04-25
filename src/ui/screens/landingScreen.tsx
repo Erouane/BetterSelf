@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { Project } from "../../data/project/project";
+import { ProjectsStoreContext } from "../../data/project/projectsStoreContext";
 import { AnimatedTitle } from "../components/animatedTitle/animatedTitle";
 import { HeaderButton } from "../components/headerButton/headerButton";
 import { ProjectCard } from "../components/project/projectCard";
+import { Colors } from "../Theme/colors";
 import { Screen } from "./Screen";
 
 export const LandingScreen = () => {
+	const projectsStore = useContext(ProjectsStoreContext);
+	const projects = projectsStore?.projects;
+
 	return (
 		<Screen>
 			<MainContainer>
@@ -16,18 +22,16 @@ export const LandingScreen = () => {
 					<HeaderButton text="Log in"></HeaderButton>
 				</HeaderContainer>
 				<ProjectsContainer>
-					<ProjectCard title="Project" tasks={["task1", "task2", "task3"]} />
-					<ProjectCard title="Project" tasks={[]} />
-					<ProjectCard title="Project" tasks={["task1", "task2"]} />
-					<ProjectCard title="Project" tasks={["task1"]} />
-					<ProjectCard title="Project" tasks={["task1", "task2"]} />
-					<ProjectCard title="Project" tasks={["task1", "task2", "task3"]} />
-					<ProjectCard title="Project" tasks={[]} />
-					<ProjectCard title="Project" tasks={["task1", "task2"]} />
-					<ProjectCard title="Project" tasks={["task1"]} />
-					<ProjectCard title="Project" tasks={["task1", "task2"]} />
-					<ProjectCard title="Project" tasks={["task1"]} />
-					<ProjectCard title="Project" tasks={["task1", "task2"]} />
+					{projects?.map((value: Project, index: number) => {
+						console.log(value.tasks);
+						return (
+							<ProjectCard
+								title={value.title}
+								tasks={value.tasks}
+								key={index}
+							/>
+						);
+					})}
 				</ProjectsContainer>
 			</MainContainer>
 		</Screen>
@@ -40,10 +44,13 @@ const MainContainer = styled.div`
 `;
 
 const HeaderContainer = styled.div`
+	margin: 0px -20px;
 	display: flex;
 	flex-direction: row;
-	flex-grow: 0;
 	padding: 50px;
+	border-bottom: solid 5px;
+	border-bottom-color: ${Colors.secondaryColor};
+	border-radius: 0px 0px 80px 80px;
 `;
 
 const ProjectsContainer = styled.div`

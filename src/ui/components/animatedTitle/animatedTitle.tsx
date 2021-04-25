@@ -10,13 +10,13 @@ interface AnimatedTitleProps {
 export const AnimatedTitle = (props: AnimatedTitleProps) => {
 	const [titleStyle, titleApi] = useSpring(() => ({
 		from: {
-			x: 100,
+			x: 400,
 			opacity: 0,
 		},
 	}));
 	useEffect(() => {
 		titleApi.start({
-			config: { tension: 50 },
+			config: { tension: 70 },
 			to: { x: 0, opacity: 1 },
 		});
 	});

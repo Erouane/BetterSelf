@@ -2,6 +2,7 @@ import { getRandomInteger } from "../../utils/randomInteger";
 
 export const Colors = {
 	primaryColor: "#FFFFFF",
+	secondaryColor: "#abd3ff",
 	primaryText: "#FFFFFF",
 };
 

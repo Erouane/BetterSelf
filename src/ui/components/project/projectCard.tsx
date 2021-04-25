@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
+
 import { getRandomInteger } from "../../../utils/randomInteger";
 import { Colors, getRandomPastelColor } from "../../Theme/colors";
+import { Task } from "../../../data/project/task";
 
 interface ProjectCardProps {
 	title: string;
-	tasks?: string[];
+	tasks?: Task[];
 }
 
 export const ProjectCard = (props: ProjectCardProps) => {
@@ -26,7 +28,9 @@ export const ProjectCard = (props: ProjectCardProps) => {
 		config: { tension: 20, mass: 20 },
 	}));
 	const randomColor = getRandomPastelColor();
-	const tasks = props.tasks;
+	const tasks = props.tasks?.map((value: Task) => {
+		return value.title;
+	});
 	useEffect(() => {
 		flipApi.start({
 			transform: "rotateY(-360deg)",
@@ -34,6 +38,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
 			config: { tension: 100, mass: 1 },
 		});
 	});
+
 	return (
 		<FlipContainer style={flipStyle}>
 			<Container
@@ -51,9 +56,9 @@ export const ProjectCard = (props: ProjectCardProps) => {
 					<>
 						{tasks.map((value: string, index: number) => {
 							return (
-								<Task color={Colors.primaryText} key={index}>
+								<TaskName color={Colors.primaryText} key={index}>
 									{value}
-								</Task>
+								</TaskName>
 							);
 						})}
 					</>
@@ -79,6 +84,6 @@ const Title = styled.h1<{ color: string }>`
 	color: ${(props) => props.color};
 `;
 
-const Task = styled.h2<{ color: string }>`
+const TaskName = styled.h2<{ color: string }>`
 	color: ${(props) => props.color};
 `;
