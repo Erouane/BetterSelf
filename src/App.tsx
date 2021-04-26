@@ -10,9 +10,9 @@ import { ProjectsStoreContext } from "./data/project/projectsStoreContext";
 function App() {
 	const projectsStore = new ProjectsStore();
 
-	projectsStore.addProject({ title: "issou" });
+	projectsStore.addProject({ title: "projet 1" });
 	projectsStore.addProject({
-		title: "lmao",
+		title: "projet 2",
 		tasks: [{ title: "task1" }, { title: "task2" }],
 	});
 

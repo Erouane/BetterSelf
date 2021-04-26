@@ -12,7 +12,6 @@ export const AnimatedLetter = (props: AnimatedLetterProps) => {
 	const getRandomAngle = () => getRandomInteger(-10, 10);
 	const getRandomVector = () => Math.random();
 	const randomColor = getRandomBrightColor();
-	console.log(randomColor);
 	const [wriggleStyle, wriggleApi] = useSpring(() => ({
 		loop: true,
 		to: [
