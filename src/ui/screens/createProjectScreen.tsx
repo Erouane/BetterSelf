@@ -49,6 +49,7 @@ export const CreateProjectScreen = () => {
 										<TextInput
 											placeholder="newTask"
 											key={index}
+											fontSize={1.5}
 											value={value.title}
 											onChange={(event) => {
 												value.title = event.target.value;
@@ -61,6 +62,7 @@ export const CreateProjectScreen = () => {
 									) : (
 										<TextInput
 											key={index}
+											fontSize={1.5}
 											value={value.title}
 											onChange={(event) => {
 												value.title = event.target.value;
@@ -98,10 +100,10 @@ const Container = styled.div`
 	margin: 20px;
 `;
 
-const TextInput = styled.input`
+const TextInput = styled.input<{ fontSize?: number }>`
 	outline: none;
-	font: 2em Arial;
-	width: 200px;
+	font: ${(props) => (props.fontSize ? props.fontSize : 2)}em Arial;
+	min-width: 200px;
 	border: 2px solid ${Colors.tertiaryColor};
 	&:focus {
 		border: 2px solid ${Colors.secondaryColor};

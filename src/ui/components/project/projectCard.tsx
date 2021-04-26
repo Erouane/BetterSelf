@@ -17,7 +17,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
 
 	return (
 		<AnimatedCard>
-			<>
+			<Container>
 				<Title color={Colors.primaryText}>{props.title}</Title>
 				{tasks ? (
 					<>
@@ -30,10 +30,14 @@ export const ProjectCard = (props: ProjectCardProps) => {
 						})}
 					</>
 				) : null}
-			</>
+			</Container>
 		</AnimatedCard>
 	);
 };
+
+const Container = styled.div`
+	padding: 50px;
+`;
 
 const Title = styled.h1<{ color: string }>`
 	color: ${(props) => props.color};

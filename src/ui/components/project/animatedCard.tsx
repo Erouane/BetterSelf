@@ -54,9 +54,7 @@ export const AnimatedCard = (props: AnimatedCardProps) => {
 
 const Container = styled(animated.div)<{ color: string }>`
 	flex-direction: row;
-	width: 150px;
 	margin: 50px 50px;
-	padding: 50px;
 	border-radius: 20px;
 	background-color: ${(props) => props.color};
 	cursor: pointer;

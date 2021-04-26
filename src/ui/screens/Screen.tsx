@@ -1,20 +1,27 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useCallback } from "react";
 import styled from "styled-components";
 
 import { Colors } from "../Theme/colors";
 import { AnimatedTitle } from "../components/animatedTitle/animatedTitle";
 import { Button } from "../components/button/button";
 import { Spacer } from "../components/spacer";
+import { useHistory } from "react-router-dom";
+import { Routes } from "../routing/routes";
 
 interface ScreenProps {
 	children: ReactElement;
 }
 
 export const Screen = (props: ScreenProps) => {
+	const history = useHistory();
+	const redirect = useCallback(() => history.push(Routes.HOME), [history]);
+
 	return (
 		<Container>
 			<HeaderContainer>
-				<AnimatedTitle title="You can do it !"></AnimatedTitle>
+				<TitleContainer onPointerDown={() => redirect()}>
+					<AnimatedTitle title="You can do it !"></AnimatedTitle>
+				</TitleContainer>
 				<Spacer />
 				<ButtonContainer>
 					<Button text="Sign in" />
@@ -41,6 +48,7 @@ const HeaderContainer = styled.div`
 	margin: 0px -20px;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	padding: 50px;
 	border-bottom: solid 5px;
 	border-bottom-color: ${Colors.secondaryColor};
@@ -49,4 +57,8 @@ const HeaderContainer = styled.div`
 
 const ButtonContainer = styled.div`
 	padding: 0px 20px;
+`;
+
+const TitleContainer = styled.div`
+	cursor: pointer;
 `;

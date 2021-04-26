@@ -33,9 +33,8 @@ function App() {
 const MainContainer = styled.div`
   display: flex;
   background-color: ${Colors.primaryColor}
-  height: 100vh;
-  width: 100vw;
-  overflow: auto;
+
+  overflow: scroll;
 `;
 
 export default App;

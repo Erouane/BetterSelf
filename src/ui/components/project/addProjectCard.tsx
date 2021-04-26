@@ -11,8 +11,18 @@ export const AddProjectCard = () => {
 	return (
 		<AnimatedCard>
 			<Link to={Routes.CREATEPROJECT}>
-				<PlusIcon stroke={Colors.primaryColor} />
+				<Container>
+					<Icon stroke={Colors.primaryColor} />
+				</Container>
 			</Link>
 		</AnimatedCard>
 	);
 };
+
+const Container = styled.div`
+	padding: 50px;
+`;
+
+const Icon = styled(PlusIcon)`
+	width: 150px;
+`;
