@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { Project, ProjectParams } from "./project";
+import { TaskParams } from "./task";
 
 export class ProjectsStore {
 	private _projects: Project[];
@@ -20,5 +21,13 @@ export class ProjectsStore {
 
 	public removeProject(index: number) {
 		this._projects.slice(index);
+	}
+
+	public addTask(index: number, params: TaskParams) {
+		this._projects[index].addTask(params);
+	}
+
+	public removeTask(projectIndex: number, taskIndex: number) {
+		this._projects[projectIndex].removeTask(taskIndex);
 	}
 }

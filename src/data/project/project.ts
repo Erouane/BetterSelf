@@ -7,7 +7,6 @@ export interface ProjectParams {
 
 export class Project {
 	private _title: string;
-
 	private _tasks: Task[];
 
 	constructor(params: ProjectParams) {
@@ -17,6 +16,14 @@ export class Project {
 			  })
 			: [];
 		this._title = params.title;
+	}
+
+	public get title(): string {
+		return this._title;
+	}
+
+	public set title(value: string) {
+		this._title = value;
 	}
 
 	public get tasks(): Task[] {
@@ -30,13 +37,5 @@ export class Project {
 
 	public removeTask(index: number) {
 		this._tasks.splice(index);
-	}
-
-	public get title(): string {
-		return this._title;
-	}
-
-	public set title(value: string) {
-		this._title = value;
 	}
 }
