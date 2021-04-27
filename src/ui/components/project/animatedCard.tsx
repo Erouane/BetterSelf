@@ -3,6 +3,7 @@ import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
 import { getRandomInteger } from "../../../utils/randomInteger";
 import { getRandomPastelColor } from "../../Theme/colors";
+import { TiltContainer } from "../tiltContainer";
 
 interface AnimatedCardProps {
 	children: ReactElement;
@@ -35,26 +36,34 @@ export const AnimatedCard = (props: AnimatedCardProps) => {
 	});
 
 	return (
-		<FlipContainer style={flipStyle}>
-			<Container
-				onPointerEnter={() => hoverApi.start({ transform: "scale(1.1)" })}
-				onPointerLeave={() =>
-					hoverApi.start({ transform: "scale(1)", opacity: 1 })
-				}
-				onPointerUp={() => hoverApi.start({ opacity: 1 })}
-				onPointerDown={() => hoverApi.start({ opacity: 0.5 })}
-				style={hoverStyle}
-				color={randomColor}
-			>
-				{props.children}
-			</Container>
-		</FlipContainer>
+		<MainContainer>
+			<FlipContainer style={flipStyle}>
+				<TiltContainer>
+					<Container
+						onPointerEnter={() => hoverApi.start({ transform: "scale(1.1)" })}
+						onPointerLeave={() =>
+							hoverApi.start({ transform: "scale(1)", opacity: 1 })
+						}
+						onPointerUp={() => hoverApi.start({ opacity: 1 })}
+						onPointerDown={() => hoverApi.start({ opacity: 0.5 })}
+						style={hoverStyle}
+						color={randomColor}
+					>
+						{props.children}
+					</Container>
+				</TiltContainer>
+			</FlipContainer>
+		</MainContainer>
 	);
 };
 
+const MainContainer = styled.div`
+	margin: 50px 50px;
+`;
+
 const Container = styled(animated.div)<{ color: string }>`
 	flex-direction: row;
-	margin: 50px 50px;
+
 	border-radius: 20px;
 	background-color: ${(props) => props.color};
 	cursor: pointer;

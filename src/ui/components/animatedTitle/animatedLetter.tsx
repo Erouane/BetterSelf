@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { animated, useSpring } from "react-spring";
 import { getRandomInteger } from "../../../utils/randomInteger";
 import { getRandomBrightColor } from "../../Theme/colors";
+import { DragContainer } from "../dragContainer";
 
 interface AnimatedLetterProps {
 	letter: string;
@@ -26,15 +27,18 @@ export const AnimatedLetter = (props: AnimatedLetterProps) => {
 			},
 		],
 	}));
+
 	useEffect(() => {
 		wriggleApi.start({
 			config: { tension: getRandomInteger(200, 400), mass: 10, clamp: true },
 		});
 	});
 	return (
-		<Letter style={wriggleStyle} color={randomColor}>
-			{props.letter}
-		</Letter>
+		<DragContainer>
+			<Letter style={wriggleStyle} color={randomColor}>
+				{props.letter}
+			</Letter>
+		</DragContainer>
 	);
 };
 
