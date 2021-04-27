@@ -4,6 +4,7 @@ import { HomeScreen } from "../screens/homeScreen";
 import { Routes } from "./routes";
 import { Screen } from "../screens/Screen";
 import { CreateProjectScreen } from "../screens/createProjectScreen";
+import { ProjectDetailScreen } from "../screens/projectDetailScreen";
 
 export const AppRoutes = () => {
 	return (
@@ -17,6 +18,9 @@ export const AppRoutes = () => {
 				</Route>
 				<Route path={Routes.CREATEPROJECT}>
 					<CreateProjectScreen />
+				</Route>
+				<Route path={Routes.PROJECTDETAIL + "/:id"}>
+					<ProjectDetailScreen />
 				</Route>
 			</Switch>
 		</Screen>

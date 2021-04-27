@@ -16,7 +16,12 @@ export const HomeScreen = () => {
 			<>
 				{projects?.map((value: Project, index: number) => {
 					return (
-						<ProjectCard title={value.title} tasks={value.tasks} key={index} />
+						<ProjectCard
+							title={value.title}
+							tasks={value.tasks}
+							key={index}
+							index={index}
+						/>
 					);
 				})}
 			</>
