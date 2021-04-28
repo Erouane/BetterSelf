@@ -44,8 +44,8 @@ export const TiltContainer = (props: TiltContainerProps) => {
 			const y = my - heightState / 2 - topState;
 
 			api.start({
-				rotateX: -y / 10,
-				rotateY: x / 10,
+				rotateX: (-y / heightState) * 15,
+				rotateY: (x / widthState) * 15,
 			});
 		},
 	});

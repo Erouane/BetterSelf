@@ -21,6 +21,7 @@ export const AnimatedCard = (props: AnimatedCardProps) => {
 	const [flipStyle, flipApi] = useSpring(() => ({
 		from: {
 			transform: "rotateY(90deg)",
+			opacity: 0,
 		},
 		delay: randomDelay,
 		config: { tension: 20, mass: 20 },
@@ -30,6 +31,7 @@ export const AnimatedCard = (props: AnimatedCardProps) => {
 	useEffect(() => {
 		flipApi.start({
 			transform: "rotateY(-360deg)",
+			opacity: 1,
 			delay: randomDelay,
 			config: { tension: 100, mass: 1 },
 		});
@@ -59,6 +61,7 @@ export const AnimatedCard = (props: AnimatedCardProps) => {
 
 const MainContainer = styled.div`
 	margin: 50px 50px;
+	max-width: 500px;
 `;
 
 const Container = styled(animated.div)<{ color: string }>`
