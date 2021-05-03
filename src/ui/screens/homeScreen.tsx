@@ -14,16 +14,21 @@ export const HomeScreen = () => {
 		<ProjectsContainer>
 			<AddProjectCard />
 			<>
-				{projects?.map((value: Project, index: number) => {
-					return (
-						<ProjectCard
-							title={value.title}
-							tasks={value.tasks}
-							key={index}
-							index={index}
-						/>
-					);
-				})}
+				{projects
+					? projects.length > 0
+						? projects?.map((value: Project, index: number) => {
+								return (
+									<ProjectCard
+										title={value.title}
+										tasks={value.tasks}
+										key={index}
+										index={index}
+										color={value.color}
+									/>
+								);
+						  })
+						: null
+					: null}
 			</>
 		</ProjectsContainer>
 	);

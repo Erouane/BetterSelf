@@ -26,7 +26,6 @@ export const AnimatedCard = (props: AnimatedCardProps) => {
 		delay: randomDelay,
 		config: { tension: 20, mass: 20 },
 	}));
-	const randomColor = getRandomPastelColor();
 
 	useEffect(() => {
 		flipApi.start({
@@ -49,7 +48,6 @@ export const AnimatedCard = (props: AnimatedCardProps) => {
 						onPointerUp={() => hoverApi.start({ opacity: 1 })}
 						onPointerDown={() => hoverApi.start({ opacity: 0.5 })}
 						style={hoverStyle}
-						color={randomColor}
 					>
 						{props.children}
 					</Container>
@@ -64,11 +62,8 @@ const MainContainer = styled.div`
 	max-width: 500px;
 `;
 
-const Container = styled(animated.div)<{ color: string }>`
+const Container = styled(animated.div)`
 	flex-direction: row;
-
-	border-radius: 20px;
-	background-color: ${(props) => props.color};
 	cursor: pointer;
 `;
 

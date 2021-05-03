@@ -3,11 +3,13 @@ import { Task, TaskParams } from "./task";
 export interface ProjectParams {
 	title: string;
 	tasks?: TaskParams[];
+	color: string;
 }
 
 export class Project {
 	private _title: string;
 	private _tasks: Task[];
+	private _color: string;
 
 	constructor(params: ProjectParams) {
 		this._tasks = params.tasks
@@ -16,6 +18,7 @@ export class Project {
 			  })
 			: [];
 		this._title = params.title;
+		this._color = params.color;
 	}
 
 	public get title(): string {
@@ -28,6 +31,13 @@ export class Project {
 
 	public get tasks(): Task[] {
 		return this._tasks;
+	}
+
+	public get color(): string {
+		return this._color;
+	}
+	public set color(value: string) {
+		this._color = value;
 	}
 
 	public addTask(params: TaskParams) {

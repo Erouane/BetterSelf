@@ -11,6 +11,7 @@ interface ProjectCardProps {
 	title: string;
 	tasks?: Task[];
 	index: number;
+	color: string;
 }
 
 export const ProjectCard = (props: ProjectCardProps) => {
@@ -21,7 +22,7 @@ export const ProjectCard = (props: ProjectCardProps) => {
 	return (
 		<AnimatedCard>
 			<NoStyleLink to={Routes.PROJECTDETAIL + `/${props.index}`}>
-				<Container>
+				<Container color={props.color}>
 					<Title color={Colors.primaryText}>{props.title}</Title>
 					{tasks ? (
 						<>
@@ -40,8 +41,10 @@ export const ProjectCard = (props: ProjectCardProps) => {
 	);
 };
 
-const Container = styled.div`
+const Container = styled.div<{ color: string }>`
 	padding: 50px;
+	background-color: ${(props) => props.color};
+	border-radius: 20px;
 `;
 
 const NoStyleLink = styled(Link)`

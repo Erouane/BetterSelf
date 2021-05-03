@@ -6,7 +6,7 @@ import { Task, TaskParams } from "../../data/project/task";
 import { AnimatedContainer } from "../components/animatedContainer";
 import { Button } from "../components/button/button";
 import { Routes } from "../routing/routes";
-import { Colors } from "../Theme/colors";
+import { Colors, getRandomPastelColor } from "../Theme/colors";
 
 export const CreateProjectScreen = () => {
 	const [titleState, setTitleState] = useState<string>("");
@@ -81,6 +81,7 @@ export const CreateProjectScreen = () => {
 								projectsStore?.addProject({
 									title: titleState,
 									tasks: tasks,
+									color: getRandomPastelColor(),
 								});
 								redirect();
 							}}

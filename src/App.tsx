@@ -6,15 +6,11 @@ import { Colors } from "./ui/Theme/colors";
 import { AppRoutes } from "./ui/routing/appRoutes";
 import { ProjectsStore } from "./data/project/projectsStore";
 import { ProjectsStoreContext } from "./data/project/projectsStoreContext";
+import { ProjectPersistLocalManager } from "./data/project/projectPersistLocalManager";
 
 function App() {
-	const projectsStore = new ProjectsStore();
-
-	projectsStore.addProject({ title: "projet 1" });
-	projectsStore.addProject({
-		title: "projet 2",
-		tasks: [{ title: "task1" }, { title: "task2" }],
-	});
+	const projectpersistLocalManager = new ProjectPersistLocalManager();
+	const projectsStore = new ProjectsStore(projectpersistLocalManager);
 
 	return (
 		document.getElementById("root"),
