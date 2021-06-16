@@ -1,5 +1,6 @@
 import React, { ReactElement, useCallback } from "react";
 import styled from "styled-components";
+import { observer } from "mobx-react";
 
 import { Colors } from "../Theme/colors";
 import { AnimatedTitle } from "../components/animatedTitle/animatedTitle";
@@ -12,7 +13,7 @@ interface ScreenProps {
 	children: ReactElement;
 }
 
-export const Screen = (props: ScreenProps) => {
+export const Screen = observer((props: ScreenProps) => {
 	const history = useHistory();
 	const redirect = useCallback(() => history.push(Routes.HOME), [history]);
 
@@ -20,7 +21,7 @@ export const Screen = (props: ScreenProps) => {
 		<Container>
 			<HeaderContainer>
 				<TitleContainer onPointerDown={() => redirect()}>
-					<AnimatedTitle title="You can do it !"></AnimatedTitle>
+					<AnimatedTitle></AnimatedTitle>
 				</TitleContainer>
 				<Spacer />
 				<ButtonContainer>
@@ -33,7 +34,7 @@ export const Screen = (props: ScreenProps) => {
 			{props.children}
 		</Container>
 	);
-};
+});
 
 const Container = styled.div`
 display: flex
