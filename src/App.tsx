@@ -6,11 +6,11 @@ import { Colors } from "./ui/Theme/colors";
 import { AppRoutes } from "./ui/routing/appRoutes";
 import { ProjectsStore } from "./data/project/projectsStore";
 import { ProjectsStoreContext } from "./data/project/projectsStoreContext";
-import { ProjectPersistLocalManager } from "./data/project/projectPersistLocalManager";
+import { ProjectAPILocalManager } from "./data/project/projectAPILocalManager";
 
 function App() {
-	const projectpersistLocalManager = new ProjectPersistLocalManager();
-	const projectsStore = new ProjectsStore(projectpersistLocalManager);
+	const projectAPILocalManager = new ProjectAPILocalManager();
+	const projectsStore = new ProjectsStore(projectAPILocalManager);
 
 	return (
 		document.getElementById("root"),

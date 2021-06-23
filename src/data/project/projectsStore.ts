@@ -1,14 +1,16 @@
+import { injectable } from "inversify";
 import { Project, ProjectParams } from "./project";
-import { ProjectPersistLocalManager } from "./projectPersistLocalManager";
+import { ProjectAPI } from "./projectAPI";
 import { TaskParams } from "./task";
 
+@injectable()
 export class ProjectsStore {
 	private _projects: Project[];
-	private persistLocalManager: ProjectPersistLocalManager;
+	private projectAPI: ProjectAPI;
 
-	constructor(persistLocalManager: ProjectPersistLocalManager) {
-		this.persistLocalManager = persistLocalManager;
-		this._projects = this.persistLocalManager.projects;
+	constructor(projectAPI: ProjectAPI) {
+		this.projectAPI = projectAPI;
+		this._projects = this.projectAPI.projects;
 	}
 
 	public get projects(): Project[] {
@@ -16,8 +18,8 @@ export class ProjectsStore {
 	}
 
 	public pushData() {
-		this.persistLocalManager.projects = this._projects;
-		this.persistLocalManager.sendData();
+		this.projectAPI.projects = this._projects;
+		this.projectAPI.sendData();
 	}
 
 	public addProject(params: ProjectParams) {

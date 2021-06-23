@@ -1,7 +1,7 @@
 import { Project } from "./project";
-import { ProjectPersistManager } from "./projectPersistManager";
+import { ProjectAPI } from "./projectAPI";
 
-export class ProjectPersistLocalManager implements ProjectPersistManager {
+export class ProjectAPILocalManager implements ProjectAPI {
 	private _projects: Project[] = [];
 
 	constructor() {
