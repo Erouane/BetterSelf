@@ -1,7 +1,8 @@
 import { inject, injectable } from "inversify";
+import { makeAutoObservable } from "mobx";
 import { TYPES } from "../../common/interfaceTypes";
 import { Project, ProjectParams } from "./project";
-import type { ProjectAPI } from "./projectAPI";
+import ProjectAPI from "./projectAPI";
 import { TaskParams } from "./task";
 
 @injectable()
@@ -11,16 +12,24 @@ export class ProjectsStore {
 
 	constructor(@inject(TYPES.ProjectAPI) projectAPI: ProjectAPI) {
 		this.projectAPI = projectAPI;
-		this._projects = this.projectAPI.projects;
+		this._projects = [];
+		makeAutoObservable(this);
+		this.getData();
 	}
 
 	public get projects(): Project[] {
 		return this._projects;
 	}
 
+	public async getData() {
+		await this.projectAPI.getData().then((value) => {
+			this._projects = value;
+		});
+		console.log(this._projects);
+	}
+
 	public pushData() {
-		this.projectAPI.projects = this._projects;
-		this.projectAPI.sendData();
+		this.projectAPI.sendData(this._projects);
 	}
 
 	public addProject(params: ProjectParams) {

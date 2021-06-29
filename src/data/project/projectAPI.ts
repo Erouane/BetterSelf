@@ -1,7 +1,6 @@
 import { Project } from "./project";
 
-export interface ProjectAPI {
-	projects: Project[];
-	getData: () => void;
-	sendData: () => void;
+export default interface ProjectAPI {
+	getData: () => Promise<Project[]>;
+	sendData: (projects: Project[]) => void;
 }

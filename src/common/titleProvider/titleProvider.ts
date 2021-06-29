@@ -14,7 +14,7 @@ export class TitleProvider {
 		});
 		setInterval(() => {
 			this.updateTitle();
-		}, 5 * 1000);
+		}, 60 * 1000);
 		makeAutoObservable(this);
 	}
 

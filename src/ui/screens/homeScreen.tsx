@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Project } from "../../data/project/project";
@@ -6,9 +7,11 @@ import { ProjectsStoreContext } from "../../data/project/projectsStoreContext";
 import { AddProjectCard } from "../components/project/addProjectCard";
 import { ProjectCard } from "../components/project/projectCard";
 
-export const HomeScreen = () => {
+export const HomeScreen = observer(() => {
 	const projectsStore = useContext(ProjectsStoreContext);
 	const projects = projectsStore?.projects;
+
+	console.log("projects : " + projects);
 
 	return (
 		<ProjectsContainer>
@@ -32,7 +35,7 @@ export const HomeScreen = () => {
 			</>
 		</ProjectsContainer>
 	);
-};
+});
 
 const ProjectsContainer = styled.div`
 	display: flex;
