@@ -46,6 +46,6 @@ const Letter = styled(animated.p)<{ color: string }>`
 	padding: 0px 10px;
 	color: ${(props) => props.color};
 	font-family: UbuntuMono;
-	font-size: 3em;
+	font-size: calc(1vw + 1vh + 2vmin);
 	flex-shrink: 1;
 `;

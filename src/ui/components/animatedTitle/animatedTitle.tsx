@@ -42,4 +42,5 @@ export const AnimatedTitle = observer((props: AnimatedTitleProps) => {
 const Container = styled(animated.div)`
 	display: flex;
 	flex-direction: row;
+	margin: 20px 0px 20px 0px;
 `;

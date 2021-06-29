@@ -45,14 +45,12 @@ display: flex
 `;
 
 const HeaderContainer = styled.div`
-	margin: 0px -20px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding: 50px;
 	border-bottom: solid 5px;
 	border-bottom-color: ${Colors.secondaryColor};
-	border-radius: 0px 0px 80px 80px;
 `;
 
 const ButtonContainer = styled.div`
