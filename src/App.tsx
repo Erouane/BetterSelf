@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { BrowserRouter } from "react-router-dom";
+import "reflect-metadata";
 
 import { Colors } from "./ui/Theme/colors";
 import { AppRoutes } from "./ui/routing/appRoutes";
 import { ProjectsStore } from "./data/project/projectsStore";
 import { ProjectsStoreContext } from "./data/project/projectsStoreContext";
-import { ProjectAPILocalManager } from "./data/project/projectAPILocalManager";
+import { container } from "./common/container";
 
 function App() {
-	const projectAPILocalManager = new ProjectAPILocalManager();
-	const projectsStore = new ProjectsStore(projectAPILocalManager);
+	const projectsStore = container.get(ProjectsStore);
 
 	return (
 		document.getElementById("root"),

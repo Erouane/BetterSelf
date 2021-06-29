@@ -1,6 +1,8 @@
+import { injectable } from "inversify";
 import { Project } from "./project";
 import { ProjectAPI } from "./projectAPI";
 
+@injectable()
 export class ProjectAPILocalManager implements ProjectAPI {
 	private _projects: Project[] = [];
 

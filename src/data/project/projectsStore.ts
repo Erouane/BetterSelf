@@ -1,6 +1,7 @@
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
+import { TYPES } from "../../common/interfaceTypes";
 import { Project, ProjectParams } from "./project";
-import { ProjectAPI } from "./projectAPI";
+import type { ProjectAPI } from "./projectAPI";
 import { TaskParams } from "./task";
 
 @injectable()
@@ -8,7 +9,7 @@ export class ProjectsStore {
 	private _projects: Project[];
 	private projectAPI: ProjectAPI;
 
-	constructor(projectAPI: ProjectAPI) {
+	constructor(@inject(TYPES.ProjectAPI) projectAPI: ProjectAPI) {
 		this.projectAPI = projectAPI;
 		this._projects = this.projectAPI.projects;
 	}
